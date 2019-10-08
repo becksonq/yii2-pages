@@ -14,13 +14,13 @@ class m150429_155009_create_page_table extends Migration
      * @var string
      */
     private $_tableName;
-    
+
     public function init()
     {
         parent::init();
         $this->_tableName = Yii::$app->getModule('pages')->tableName;
     }
-    
+
     public function up()
     {
         $tableOptions = null;
@@ -29,20 +29,19 @@ class m150429_155009_create_page_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable(
-            $this->_tableName,
-            [
-                'id' => Schema::TYPE_PK,
-                'title' => Schema::TYPE_STRING . ' NOT NULL',
-                'alias' => Schema::TYPE_STRING . ' NOT NULL',
-                'published' => Schema::TYPE_BOOLEAN . ' DEFAULT 1',
-                'content' => Schema::TYPE_TEXT,
-                'title_browser' => Schema::TYPE_STRING,
-                'meta_keywords' => Schema::TYPE_STRING . '(200)',
-                'meta_description' => Schema::TYPE_STRING . '(160)',
-                'created_at' => Schema::TYPE_DATETIME . ' NOT NULL',
-                'updated_at' => Schema::TYPE_DATETIME . ' NOT NULL',
-            ],
+        $this->createTable($this->_tableName, [
+            'id'               => $this->primaryKey(),
+            'title'            => $this->string()->notNull(),
+            'display_title'    => $this->boolean()->defaultValue(1),
+            'alias'            => $this->string()->notNull(),
+            'published'        => $this->boolean()->defaultValue(1),
+            'content'          => $this->text(),
+            'title_browser'    => $this->string(),
+            'meta_keywords'    => $this->string(200),
+            'meta_description' => $this->string(160),
+            'created_at'       => $this->integer()->notNull(),
+            'updated_at'       => $this->integer()->notNull(),
+        ],
             $tableOptions
         );
 
