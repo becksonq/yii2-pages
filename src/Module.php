@@ -18,7 +18,7 @@ class Module extends \yii\base\Module
      * @var string Table name of model \bupy7\pages\models\Page.
      * @see \yii\db\ActiveRecord::tableName()
      */
-    public $tableName = '{{%page}}';
+    public $tableName = '{{%pages}}';
     /**
      * @var boolean Enable ability add images via Imperavi Redactor? If this property is 'true', you must be
      * set property '$pathToImages' and '$urlToImages'.
